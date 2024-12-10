@@ -17,9 +17,19 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        $user = new \App\Models\User();
+        $user->name = 'Admin';
+        $user->email = 'admin@test.es';
+        $user->password = \Illuminate\Support\Facades\Hash::make('password');
+        $user->email_verified_at = now();
+        $user->role = 'admin';
+        $user->save();
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

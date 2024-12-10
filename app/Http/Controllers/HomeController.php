@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware('auth')->only('home');
+        $this->middleware('auth')->only('verificado');
         $this->middleware('auth')->except('index');
     }
 
