@@ -27,7 +27,7 @@ return new class extends Migration
         $user->email = 'admin@test.es';
         $user->password = \Illuminate\Support\Facades\Hash::make('password');
         $user->email_verified_at = now();
-        $user->role = 'admin';
+        $user->role = 'superadmin';
         $user->save();
 
 

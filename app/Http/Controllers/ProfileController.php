@@ -45,6 +45,7 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $user->email = $request->new_email;
+        $user->email_verified_at = null; // Elimino la marca de verificación porque el correo electrónico ha cambiado
         $user->save();
 
         return back()->with('status', 'Correo electrónico cambiado con éxito');
