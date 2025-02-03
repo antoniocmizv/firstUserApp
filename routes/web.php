@@ -15,13 +15,14 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 Route::post('/profile/change-email', [ProfileController::class, 'changeEmail'])->name('profile.changeEmail');
 Route::post('/profile/change-username', [ProfileController::class, 'changeUsername'])->name('profile.changeUsername');
 
-Route::middleware(['auth', ])->group(function () {
+Route::middleware(['auth','verified' ])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
     Route::get('/users', [UserManagementController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserManagementController::class, 'create'])->name('users.create');
     Route::post('/users', [UserManagementController::class, 'store'])->name('users.store');
